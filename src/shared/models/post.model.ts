@@ -1,7 +1,9 @@
-import type mongoose from 'mongoose';
+
+import * as mongoose from 'mongoose';
 import type { User } from './user.model';
 export interface Post {
-    title: string;
-    body: string;
+  
+    body: string,
+    title: string,
     user: {type: mongoose.Types.ObjectId} | User;
 }

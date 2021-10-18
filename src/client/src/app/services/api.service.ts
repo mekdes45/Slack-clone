@@ -1,5 +1,8 @@
+import { Message } from './../../../../shared/models/message.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { User } from '../../../../shared/models/user.model';
 import { Postable } from '../models/postable';
 
 @Injectable({
@@ -7,7 +10,7 @@ import { Postable } from '../models/postable';
 })
 export class ApiService {
   baseUrl:string = 'http://localhost:3501/';
-  constructor(private http: HttpClient) 
+  constructor(private http: HttpClient, ) 
   { }
 
   get<T>(resourceName: string) {
@@ -16,7 +19,7 @@ export class ApiService {
   post<T>(resourceName: string, data: Postable) {
     return this.http.post<T>(this.baseUrl + resourceName, data);
   }
-
+  
   delete<T>(resourceName: string) {
     return this.http.delete<T>(this.baseUrl + resourceName);
   }

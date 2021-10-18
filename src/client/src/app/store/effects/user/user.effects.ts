@@ -1,3 +1,6 @@
+import { createMessage, createMessageFailure, createMessageSuccess, loadMessageSuccess, loadMessagesFailure,loginUserFailure,
+  loginUserSuccess,
+  loadMessage } from './../../actions/user/user.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
@@ -16,6 +19,11 @@ import {
   updateUser,
   updateUserFailure,
   updateUserSuccess,
+  loginUser,
+
+  
+  
+
 } from '../../actions/user/user.actions';
 
 @Injectable()
@@ -55,6 +63,20 @@ export class UserEffects {
       )
     )
   );
+    
+    updateUser$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(updateUser),
+        mergeMap((action) =>
+          this.userService.updateUser(action.data).pipe(
+            map((data) => updateUserSuccess({ data })),
+            catchError((error) => of(updateUserFailure({ error })))
+          )
+        )
+      )
+    );
+  
+    
 
   deleteUsers$ = createEffect(() =>
     this.actions$.pipe(
@@ -67,6 +89,41 @@ export class UserEffects {
       )
     )
   );
+
+  createMessage$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(createMessage),
+        mergeMap((action) =>
+          this.userService.createMessage(action.data).pipe(
+            map((data) => createMessageSuccess({ data })),
+            catchError((error) => of(createMessageFailure({ error })))
+          )
+        )
+      )
+    );
+    loadMessage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadMessage),
+      mergeMap(() =>
+        this.userService.getMessage().pipe(
+          map((data) => loadMessageSuccess({ data })),
+          catchError((error) => of(loadMessagesFailure({ error })))
+        )
+      )
+    )
+  );
+
+  loginUsers$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(loginUser),
+    mergeMap((action) =>
+      this.userService.login(action.data).pipe(
+        map((data) => loginUserSuccess({ data })),
+        catchError((error) => of(loginUserFailure({ error })))
+      )
+    )
+  )
+);
 
   constructor(private actions$: Actions, private userService: UserService) {}
 }

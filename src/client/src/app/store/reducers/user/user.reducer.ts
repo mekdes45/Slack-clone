@@ -1,6 +1,7 @@
+import { Message } from './../../../../../../shared/models/message.model';
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '../../../../../../shared/models/user.model';
-import { createUserSuccess, deleteUserSuccess, loadUsers, loadUsersSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
+import { createMessageSuccess, createUserSuccess, deleteUserSuccess, loadMessageSuccess, loadUsers, loadUsersSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
 
 
 export const userFeatureKey = 'user';
@@ -8,17 +9,31 @@ export const userFeatureKey = 'user';
 export interface State {
   users: User[];
   selectedUser: User | null;
+  message: Message[],
+ 
 
 }
 
 export const initialState: State = {
   users: [],
   selectedUser: null,
+  message: []
+  
 };
 
 
 export const reducer = createReducer(
   initialState,
+
+  on(loadMessageSuccess, (state, action) => {
+    return { ...state, message: action.data }
+  }),
+  on(createMessageSuccess, (state, action) => {
+    const message = [...state.message];
+    message.push(action.data);
+    return {...state, message}
+  }),
+  
   on(loadUsersSuccess, (state, action) => {
     return { ...state, users: action.data }
   }),
@@ -36,5 +51,6 @@ export const reducer = createReducer(
     users.push(action.data);
     return {...state, users}
   })
+  
 );
 

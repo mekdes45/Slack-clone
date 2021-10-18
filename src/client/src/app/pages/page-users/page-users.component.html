@@ -1,2 +1,5 @@
-<app-user-input [selectedUser]="selectedUser$ | async"></app-user-input>
-<app-users-list [selectedUser]="selectedUser$ | async" [users]="(users$ | async)!"></app-users-list>
+<app-register [selectedUser]="selectedUser$ | async"></app-register>
+<app-users-list
+  [selectedUser]="selectedUser$ | async"
+  [users]="(users$ | async)!"
+></app-users-list>

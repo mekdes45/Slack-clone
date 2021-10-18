@@ -1,3 +1,4 @@
+import { Message } from './../../../../../../shared/models/message.model';
 import { createAction, props } from '@ngrx/store';
 import { Error } from 'mongoose';
 import { User } from '../../../../../../shared/models/user.model';
@@ -13,6 +14,21 @@ export const loadUsersSuccess = createAction(
 
 export const loadUsersFailure = createAction(
   '[User] Load Users Failure',
+  props<{ error: Error }>()
+);
+
+
+export const loadMessage = createAction(
+  '[Message] Load Message'
+);
+
+export const loadMessageSuccess = createAction(
+  '[Message] Load Message Success',
+  props<{ data: Message[] }>()
+);
+
+export const loadMessagesFailure = createAction(
+  '[Message] Load Message Failure',
   props<{ error: Error }>()
 );
 
@@ -35,6 +51,23 @@ export const createUserFailure = createAction(
   '[User] Create User Failure',
   props<{ error: Error }>()
 );
+
+
+export const createMessage = createAction(
+  '[Message] Create Message',
+  props<{data: Message}>()
+);
+
+export const createMessageSuccess = createAction(
+  '[Message] Create Message Success',
+  props<{ data: Message}>()
+);
+
+export const createMessageFailure = createAction(
+  '[Message] Create message Failure',
+  props<{ error: Error }>()
+);
+
 
 export const updateUser = createAction(
   '[User] Update User',
@@ -63,5 +96,20 @@ export const deleteUserSuccess = createAction(
 
 export const deleteUserFailure = createAction(
   '[User] Delete User Failure',
+  props<{ error: Error }>()
+);
+
+export const loginUser = createAction(
+  '[User] Login User',
+  props<{data: Partial<User>}>()
+);
+
+export const loginUserSuccess = createAction(
+  '[User] Login User Success',
+  props<{ data: User }>()
+);
+
+export const loginUserFailure = createAction(
+  '[User] Login User Failure',
   props<{ error: Error }>()
 );
