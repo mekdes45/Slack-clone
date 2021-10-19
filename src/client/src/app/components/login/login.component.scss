@@ -24,6 +24,8 @@
 
 .join-main .form-control {
   margin-bottom: 20px;
+  padding: 8px;
+  padding-top: 0px;
 }
 
 .join-main label {
@@ -50,12 +52,12 @@
   width: 100%;
 }
 
-@media (max-width: 700px) {
-  .chat-main {
-    display: block;
-  }
+// @media (max-width: 700px) {
+//   .chat-main {
+//     display: block;
+//   }
 
-  .chat-sidebar {
-    display: none;
-  }
-}
+//   .chat-sidebar {
+//     display: none;
+//   }
+// }
