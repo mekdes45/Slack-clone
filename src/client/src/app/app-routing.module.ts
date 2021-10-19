@@ -1,3 +1,4 @@
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   
-  { path: 'register', component:RegisterComponent },
+  { path: 'register', component: RegisterComponent },
+  {path:'side',component:SidebarComponent},
   { path: 'login', component: LoginComponent },
   { path: 'chat', component: ChatComponent },
  

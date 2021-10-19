@@ -22,6 +22,10 @@ import { UsernameComponent } from './components/username/username.component';
 
 import { ChatComponent } from './components/container/chat/chat.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule,} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -38,6 +42,8 @@ import { RegisterComponent } from './components/register/register.component';
     UsernameComponent,
     ChatComponent,
     RegisterComponent,
+    SidebarComponent,
+    
   
     
   
@@ -45,6 +51,7 @@ import { RegisterComponent } from './components/register/register.component';
   
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -54,6 +61,9 @@ import { RegisterComponent } from './components/register/register.component';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forRoot([UserEffects]),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
