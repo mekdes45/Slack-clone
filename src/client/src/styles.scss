@@ -13,7 +13,7 @@ body {
 }
 
 input[type="text"] {
-  width: 200px;
+  // width: 200px;
   height: 30px;
   outline: none;
   border: 1px solid #8182c1;
@@ -40,16 +40,16 @@ button {
 h2 {
   text-align: center;
   color: #fff;
-  padding: 5px;
+  padding: 10px;
 }
 
-.link {
-  text-align: left;
-  color: #4a4eab;
-  padding: 10px;
-  border: 1px solid #8182c1;
-  border-radius: 5px;
-}
+// .link {
+//   text-align: left;
+//   color: #4a4eab;
+//   padding: 10px;
+//   border: 1px solid #8182c1;
+//   border-radius: 5px;
+// }
 
 html,
 body {
