@@ -1,10 +1,11 @@
+import { Message } from './../../../../../shared/models/message.model';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { AppState } from 'src/app/store';
-import { deleteUser, loadUsers, selectUserAction } from 'src/app/store/actions/user/user.actions';
+import { deleteMessage, deleteUser, loadUsers, selectUserAction } from 'src/app/store/actions/user/user.actions';
 import { selectedUserSelector, usersSelector } from 'src/app/store/selectors/user/user.selectors';
 import { User } from '../../../../../shared/models/user.model';
 
@@ -34,6 +35,10 @@ export class UsersListComponent implements OnInit {
   deleteUser(user: User) {
     this.store.dispatch(deleteUser({data: user}))
     console.log(`user '${user.name}' deleted successfully`);
+  }
+  deleteMessage(message: Message) {
+    this.store.dispatch(deleteMessage({data: message}))
+    console.log(`message '${message.sender}' deleted successfully`);
   }
 
   selectUser(user: User, selectedUser: User | null) {

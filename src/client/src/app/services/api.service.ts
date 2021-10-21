@@ -1,15 +1,13 @@
-import { Message } from './../../../../shared/models/message.model';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { User } from '../../../../shared/models/user.model';
 import { Postable } from '../models/postable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  baseUrl:string = 'http://localhost:3501/';
+  baseUrl:string = 'http://localhost:3503/';
   constructor(private http: HttpClient, ) 
   { }
 
