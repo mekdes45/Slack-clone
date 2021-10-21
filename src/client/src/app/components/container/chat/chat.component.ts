@@ -1,6 +1,4 @@
 
-
-
 import {Component, OnInit} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import {ChatService} from '../../../services/chat.service';
@@ -36,7 +34,7 @@ export class ChatComponent {
   leave(){
     this.chatService.leaveRoom({user: this.user, room: this.room});
   }
-
+ 
   sendMessage()
   {
     this.chatService.sendMessage({ user: this.user, room: this.room, message: this.messageText });

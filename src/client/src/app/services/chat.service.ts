@@ -3,16 +3,15 @@ import { Injectable } from '@angular/core';
 import  io from 'socket.io-client';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Message } from '../../../../shared/models/message.model';
-import { User } from '../../../../shared/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
+
   constructor(private api:ApiService) { }
 
- socket = io('http://localhost:3501/');
+ socket = io('http://localhost:3503/');
 
   joinRoom(data:any)
   {

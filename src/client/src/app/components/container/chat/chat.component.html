@@ -1,72 +1,35 @@
-<!-- <div class="container">
-  <h1>Slack-Chat App</h1>
-  <app-username
-    (userNameEvent)="userNameUpdate($event)"
-    *ngIf="!userName"
-  ></app-username>
-  <div class="chatbox">
-    <div class="chatbox__user-list">
-      <h2>User list</h2>
-      <div class="chatbox__user--active" *ngFor="let user of userList">
-        <p>{{ user }}</p>
-      </div>
-    </div>
-    <div class="messages_list">
-      <div
-        class="chatbox__messages"
-        *ngFor="let msg of messageList"
-        [ngClass]="{ mine: msg.mine }"
-      >
-        <div class="user-message">
-          <div class="message-box">
-            <p class="name">{{ msg.userName }}</p>
-            <br />
-            <p class="message">{{ msg.message }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="main-container">
+  <div>
+    <app-header></app-header>
   </div>
-  <div class="send-message">
-    <input type="text" [(ngModel)]="message" />
-    <button (click)="sendMessage()">Send</button>
-  </div>
-</div> -->
+  <!-- <div>
+    <app-sidebar></app-sidebar>
+  </div> -->
 
-<div class="container">
-  <div class="row">
-    <h2>Slack-Chat</h2>
+  <div class="slack">
+    <!-- <h2>Mean-stack-apparetiship</h2>
+    <hr /> -->
+    <div class="form-group">
+      <h2>Username</h2>
+      <input
+        type="text"
+        [(ngModel)]="user"
+        class="form-control"
+        id="username"
+        placeholder="Enter username"
+      />
+    </div>
     <hr />
-  </div>
-  <div class="row">
-    <div class="col-sm-5">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          [(ngModel)]="user"
-          class="form-control"
-          id="username"
-          placeholder="Enter username"
-        />
-      </div>
-    </div>
     <div class="message-box">
-      <div class="col sm-2">
-        <div style="margin-top: 19px">
-          <button type="button" class="btn btn-primary" (click)="join()">
-            Join
-          </button>
-          <button type="button" class="btn btn-default" (click)="leave()">
-            Leave
-          </button>
-        </div>
-      </div>
+      <button type="button" class="btn btn-primary" (click)="join()">
+        Join
+      </button>
+      <button type="button" class="btn btn-default" (click)="leave()">
+        Leave
+      </button>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="well" style="height: 200px; padding: 15px">
+    <div class="row">
       {{ messageArray }}
       <div *ngFor="let item of messageArray">
         <span
@@ -74,19 +37,20 @@
         >
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10">
+
+    <div class="row3">
       <input type="text" class="form-control" [(ngModel)]="messageText" />
-    </div>
-    <div class="col-sm-2">
-      <button
-        type="button"
-        class="btn btn-success pull-right"
-        (click)="sendMessage()"
-      >
-        Send
-      </button>
+
+      <div class="send">
+        <button
+          type="button"
+          class="btn btn-success pull-right"
+          (click)="sendMessage()"
+        >
+          Send
+        </button>
+      </div>
     </div>
   </div>
+  <!-- </div> -->
 </div>
