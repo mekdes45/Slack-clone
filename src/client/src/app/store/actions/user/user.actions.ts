@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Message } from './../../../../../../shared/models/message.model';
 import { createAction, props } from '@ngrx/store';
 import { Error } from 'mongoose';
@@ -18,11 +19,11 @@ export const loadUsersFailure = createAction(
 );
 
 
-export const loadMessage = createAction(
-  '[Message] Load Message'
+export const loadMessages = createAction(
+  '[Message] Load Message',
 );
 
-export const loadMessageSuccess = createAction(
+export const loadMessagesSuccess = createAction(
   '[Message] Load Message Success',
   props<{ data: Message[] }>()
 );
@@ -64,11 +65,40 @@ export const createMessageSuccess = createAction(
 );
 
 export const createMessageFailure = createAction(
-  '[Message] Create message Failure',
+  '[Message] Create Message Failure',
   props<{ error: Error }>()
 );
 
 
+export const updateMessage = createAction(
+  '[Message] Update Message',
+  props<{data: Message}>()
+);
+
+export const updateMessageSuccess = createAction(
+  '[Message] Update Message Success',
+  props<{ data: Message }>()
+);
+
+export const updateMessageFailure = createAction(
+  '[Message] Update Message Failure',
+  props<{ error: Error }>()
+);
+
+export const deleteMessage = createAction(
+  '[Message] Delete Message',
+  props<{data: Message}>()
+);
+
+export const deleteMessageSuccess = createAction(
+  '[Message] Delete Message Success',
+  props<{ data: Message }>()
+);
+
+export const deleteMessageFailure = createAction(
+  '[User] Delete User Failure',
+  props<{ error: Error }>()
+);
 export const updateUser = createAction(
   '[User] Update User',
   props<{data: User}>()

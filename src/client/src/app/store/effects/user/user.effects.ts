@@ -1,6 +1,9 @@
-import { createMessage, createMessageFailure, createMessageSuccess, loadMessageSuccess, loadMessagesFailure,loginUserFailure,
+import { deleteMessage, deleteMessageFailure, deleteMessageSuccess } from 'src/app/store/actions/user/user.actions';
+import { createMessage, createMessageFailure, createMessageSuccess, loadMessagesFailure,loginUserFailure,
   loginUserSuccess,
-  loadMessage } from './../../actions/user/user.actions';
+  
+  loadMessagesSuccess,
+  loadMessages} from './../../actions/user/user.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
@@ -39,18 +42,7 @@ export class UserEffects {
       )
     )
   );
-
-  updateUsers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(updateUser),
-      mergeMap((action) =>
-        this.userService.updateUser(action.data).pipe(
-          map((data) => updateUserSuccess({ data })),
-          catchError((error) => of(updateUserFailure({ error })))
-        )
-      )
-    )
-  );
+ 
 
   createUsers$ = createEffect(() =>
     this.actions$.pipe(
@@ -100,18 +92,40 @@ export class UserEffects {
           )
         )
       )
-    );
-    loadMessage$ = createEffect(() =>
+  );
+  loadMessages$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(loadMessages),
+    mergeMap(() =>
+      this.userService.getMessages().pipe(
+        map((data) => loadMessagesSuccess({ data })),
+        catchError((error) => of(loadMessagesFailure({ error })))
+      )
+    )
+  )
+);
+    updateMessage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadMessage),
+      ofType(loadMessages),
       mergeMap(() =>
-        this.userService.getMessage().pipe(
-          map((data) => loadMessageSuccess({ data })),
+        this.userService.getMessages().pipe(
+          map((data) => loadMessagesSuccess({ data })),
           catchError((error) => of(loadMessagesFailure({ error })))
         )
       )
     )
   );
+  deleteMessages$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(deleteMessage),
+    mergeMap((action) =>
+      this.userService.deleteMessage(action.data).pipe(
+        map((data) => deleteMessageSuccess({ data })),
+        catchError((error) => of(deleteMessageFailure({ error })))
+      )
+    )
+  )
+);
 
   loginUsers$ = createEffect(() =>
   this.actions$.pipe(
