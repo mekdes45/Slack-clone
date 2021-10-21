@@ -1,10 +1,44 @@
-<form [formGroup]="addUser">
-  <input type="text" formControlName="name" placeholder="name" />
-  <input type="text" formControlName="email" placeholder="email" />
-  <input type="text" formControlName="username" placeholder="username" />
-  <input type="text" formControlName="password" placeholder="password" />
-  <button (click)="postUser(selectedUser)" [disabled]="addUser.invalid">
-    {{ selectedUser ? "Update User" : "Add User" }}
-  </button>
-  <button (click)="login()">Login</button>
-</form>
+<div class="sidebar__slackIcon">
+  <img
+    src="https://www.freeiconspng.com/uploads/slack-icon-10.png"
+    width="50"
+    alt="Slack Icon Free"
+  />
+</div>
+
+<div class="container">
+  <header class="register">Register</header>
+  <form [formGroup]="addUser">
+    <input
+      class="namee"
+      type="text"
+      formControlName="name"
+      placeholder="name"
+    />
+    <input
+      class="emaill"
+      type="text"
+      formControlName="email"
+      placeholder="email"
+    />
+    <input
+      class="usernamee"
+      type="text"
+      formControlName="username"
+      placeholder="username"
+    />
+    <input
+      class="pass"
+      type="text"
+      formControlName="password"
+      placeholder="password"
+    />
+    <button
+      class="btn"
+      (click)="postUser(selectedUser)"
+      [disabled]="addUser.invalid"
+    >
+      {{ selectedUser ? "Update User" : "Add User" }}
+    </button>
+  </form>
+</div>
