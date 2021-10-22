@@ -7,10 +7,10 @@
   font-family: "Nunito", sans-serif;
 }
 
-body {
-  // display: flex;
-  // height: 100vh;
-}
+// body {
+//   // display: flex;
+//   // height: 100vh;
+// }
 html,
 body {
   background: linear-gradient(120deg, hsl(0, 20%, 95%), #aaaabe);
@@ -33,7 +33,7 @@ button {
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
-  background: #4a4eab;
+  background: #49274b;
   color: #fff;
   text-transform: uppercase;
   &:focus {

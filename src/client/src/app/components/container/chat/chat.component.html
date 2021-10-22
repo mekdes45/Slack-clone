@@ -1,17 +1,17 @@
-<div class="container">
+<div class="chat-container">
   <div>
     <app-header></app-header>
   </div>
 
-  <!-- <div>
+  <div>
     <app-sidebar></app-sidebar>
-  </div> -->
+  </div>
 
   <div class="slack">
-    <h2>Chat-Room</h2>
-    <hr />
+    <h2>Mean-stack-apprenticeship</h2>
+
     <div class="form-group">
-      <h2>Username</h2>
+      <!-- <h2>Username</h2> -->
       <input
         type="text"
         [(ngModel)]="user"
@@ -20,7 +20,7 @@
         placeholder="Enter username"
       />
     </div>
-    <hr />
+
     <div class="message-box">
       <button type="button" class="btn btn-primary" (click)="join()">
         Join
@@ -40,7 +40,12 @@
     </div>
 
     <div class="row3">
-      <input type="text" class="form-control" [(ngModel)]="messageText" />
+      <input
+        placeholder="(Meessage #Room)"
+        type="text"
+        class="form-control"
+        [(ngModel)]="messageText"
+      />
 
       <div class="send">
         <button
@@ -53,5 +58,4 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </div>
