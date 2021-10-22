@@ -1,5 +1,5 @@
 import { deleteMessage } from 'src/app/store/actions/user/user.actions';
-import { updateMessage } from './../store/actions/user/user.actions';
+// import { updateMessage } from './../store/actions/user/user.actions';
 // import { Message } from './../../../../shared/models/message.model';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
@@ -14,6 +14,7 @@ import { Post } from '../../../../shared/models/post.model';
 export class UserService {
 
   selectedUserId = '';
+  selectedMessageId = '';
  
 
   constructor(private api: ApiService) {}
@@ -44,9 +45,9 @@ export class UserService {
   updateUser(user: User) {
       return this.api.put<User>('update-user/' + user._id, user);
   }
-  updateMessage(message: Message) {
-    return this.api.put<Message>('update-message/' + message._id, message);
-}
+//   updateMessage(message: Message) {
+//     return this.api.put<Message>('update-message/' + message._id, message);
+// }
 
   deleteUser(user: User) {
     return this.api.delete<{data: User}>('delete-user/' + user._id).pipe(map(res => res.data));
@@ -58,6 +59,10 @@ export class UserService {
 
   selectUser(id: string) {
     this.selectedUserId = id
+      ;
+  }
+  selectMessage(id: string) {
+    this.selectedMessageId = id
       ;
   }
    

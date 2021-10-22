@@ -1,10 +1,12 @@
 import { Message } from './../../../../../../shared/models/message.model';
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '../../../../../../shared/models/user.model';
-import { createMessageSuccess, createUserSuccess, deleteMessageSuccess, deleteUserSuccess, loadMessagesSuccess, loadUsers, loadUsersSuccess, selectUserAction, updateMessageSuccess, updateUserSuccess } from '../../actions/user/user.actions';
+import { createMessageSuccess, createUserSuccess, deleteMessageSuccess, deleteUserSuccess, loadMessagesSuccess, loadUsers, loadUsersSuccess, selectMessageAction, selectUserAction,  updateUserSuccess } from '../../actions/user/user.actions';
 
 
 export const userFeatureKey = 'user';
+export const messageFeatureKey = 'message';
+
 
 export interface State {
   users: User[];
@@ -47,9 +49,9 @@ export const reducer = createReducer(
     message.push(action.data);
     return {...state, message}
   }),
-  on(updateMessageSuccess, (state, action) => {
-    return {...state, messages: state.message.map(message => message._id === action.data._id ? action.data : message)}
-  }),
+  // on(updateMessageSuccess, (state, action) => {
+  //   return {...state, messages: state.message.map(message => message._id === action.data._id ? action.data : message)}
+  // }),
 
   on(deleteMessageSuccess, (state, action) => {
     return {...state, messages: state.message.filter(message => message._id !== action.data._id)}
@@ -59,7 +61,10 @@ export const reducer = createReducer(
     const users = [...state.users];
     users.push(action.data);
     return {...state, users}
-  })
+  }),
+  on(selectMessageAction, (state, action) => {
+    return { ...state, selectedMessage: action.data }
+  }),
   
 );
 

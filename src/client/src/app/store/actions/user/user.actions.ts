@@ -37,6 +37,10 @@ export const selectUserAction = createAction(
   '[User] Select User',
   props<{ data: User | null }>()
 );
+export const selectMessageAction = createAction(
+  '[Message] Select Message',
+  props<{ data: Message | null }>()
+);
 
 export const createUser = createAction(
   '[User] Create User',
@@ -70,20 +74,20 @@ export const createMessageFailure = createAction(
 );
 
 
-export const updateMessage = createAction(
-  '[Message] Update Message',
-  props<{data: Message}>()
-);
+// export const updateMessage = createAction(
+//   '[Message] Update Message',
+//   props<{data: Message}>()
+// );
 
-export const updateMessageSuccess = createAction(
-  '[Message] Update Message Success',
-  props<{ data: Message }>()
-);
+// export const updateMessageSuccess = createAction(
+//   '[Message] Update Message Success',
+//   props<{ data: Message }>()
+// );
 
-export const updateMessageFailure = createAction(
-  '[Message] Update Message Failure',
-  props<{ error: Error }>()
-);
+// export const updateMessageFailure = createAction(
+//   '[Message] Update Message Failure',
+//   props<{ error: Error }>()
+// );
 
 export const deleteMessage = createAction(
   '[Message] Delete Message',
@@ -128,6 +132,7 @@ export const deleteUserFailure = createAction(
   '[User] Delete User Failure',
   props<{ error: Error }>()
 );
+
 
 export const loginUser = createAction(
   '[User] Login User',

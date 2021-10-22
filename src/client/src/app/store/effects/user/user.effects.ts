@@ -1,4 +1,4 @@
-import { deleteMessage, deleteMessageFailure, deleteMessageSuccess } from 'src/app/store/actions/user/user.actions';
+import { deleteMessage, deleteMessageFailure, deleteMessageSuccess,  } from 'src/app/store/actions/user/user.actions';
 import { createMessage, createMessageFailure, createMessageSuccess, loadMessagesFailure,loginUserFailure,
   loginUserSuccess,
   
@@ -104,17 +104,7 @@ export class UserEffects {
     )
   )
 );
-    updateMessage$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadMessages),
-      mergeMap(() =>
-        this.userService.getMessages().pipe(
-          map((data) => loadMessagesSuccess({ data })),
-          catchError((error) => of(loadMessagesFailure({ error })))
-        )
-      )
-    )
-  );
+   
   deleteMessages$ = createEffect(() =>
   this.actions$.pipe(
     ofType(deleteMessage),
