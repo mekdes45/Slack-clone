@@ -24,8 +24,6 @@
 
 .join-main .form-control {
   margin-bottom: 20px;
-  padding: 8px;
-  padding-top: 0px;
 }
 
 .join-main label {
@@ -36,28 +34,33 @@
 .join-main input[type="text"] {
   font-size: 16px;
   padding: 5px;
-  height: 40px;
+  height: 25px;
   width: 100%;
 }
 
 .join-main select {
   font-size: 16px;
   padding: 5px;
-  height: 40px;
+  height: 30px;
   width: 100%;
 }
 
 .join-main .btn {
   margin-top: 20px;
+  padding-right: 24px;
   width: 100%;
 }
-
-// @media (max-width: 700px) {
-//   .chat-main {
-//     display: block;
-//   }
-
-//   .chat-sidebar {
-//     display: none;
-//   }
+// .form-control {
+//   margin: 30px;
+//   margin-top: 10px;
 // }
+
+@media (max-width: 700px) {
+  .chat-main {
+    display: block;
+  }
+
+  .chat-sidebar {
+    display: none;
+  }
+}

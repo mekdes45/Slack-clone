@@ -1,5 +1,5 @@
 .headerContainer {
-  // display: flex;
+  display: flex;
   position: fixed;
   width: 100%;
   align-items: center;
@@ -12,15 +12,22 @@
 
 .search {
   flex: 0.4;
-
   opacity: 1;
   border-radius: 6px;
   text-align: center;
   display: flex;
   background-color: #421f44;
   padding: 0 50px;
-  color: gray;
+  color: white;
   border: 1px gray solid;
+  .input {
+    background-color: transparent;
+    border: none;
+    text-align: cenetr;
+    min-width: 30vw;
+    outline: 0;
+    color: white;
+  }
 }
 
 .headerLeft {
@@ -37,8 +44,12 @@
   margin-left: auto;
   margin-right: 30px;
 }
-.rightHelp {
-  flex: 0.3;
-  display: flex;
-  align-items: flex-end;
-}
+// .rightHelp {
+//   flex: 0.3;
+//   display: flex;
+//   align-items: flex-end;
+// }
+// .help {
+//   margin-left: auto;
+//   margin-right: 20px;
+// }

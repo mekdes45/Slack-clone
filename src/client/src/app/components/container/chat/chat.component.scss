@@ -1,29 +1,31 @@
-.main-container {
-  justify-content: left;
-  align-items: left;
-  // width: 100vw;
-}
-.slack {
-  margin-bottom: 500px;
+.chat-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
+}
 
-  // h2 {
-  //   margin: 0.5em auto;
-  //   color: #fff;
-  //   text-align: center;
-  //   margin-top: 65px;
-  // }
+.slack {
+  flex: 0.7;
+  flex-grow: 1;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+h2 {
+  margin: 0.5em auto;
+  color: black;
+  text-align: left;
 }
 
 .form-group {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.form-group {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  margin-top: 100px;
 }
 
 .message-box {
@@ -31,10 +33,16 @@
   border-radius: 0.2em;
   position: relative;
   overflow-y: auto;
-  height: 100%;
+  margin-left: 120px;
+
+  // height: 100%;
 }
 
 .row3 {
-  margin-top: 250px;
+  margin-top: 200px;
   display: flex;
+  margin-left: 120px;
+}
+.row {
+  margin-left: 120px;
 }
