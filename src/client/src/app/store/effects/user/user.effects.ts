@@ -1,9 +1,9 @@
-import { deleteMessage, deleteMessageFailure, deleteMessageSuccess,  } from 'src/app/store/actions/user/user.actions';
-import { createMessage, createMessageFailure, createMessageSuccess, loadMessagesFailure,loginUserFailure,
+import { deleteMessage, deleteMessageFailure, deleteMessageSuccess, loadMessage, loadMessageFailure, loadMessageSuccess,  } from 'src/app/store/actions/user/user.actions';
+import { createMessage, createMessageFailure, createMessageSuccess, loginUserFailure,
   loginUserSuccess,
   
-  loadMessagesSuccess,
-  loadMessages} from './../../actions/user/user.actions';
+ 
+ } from './../../actions/user/user.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
@@ -82,7 +82,7 @@ export class UserEffects {
     )
   );
 
-  createMessage$ = createEffect(() =>
+  createMessages$ = createEffect(() =>
       this.actions$.pipe(
         ofType(createMessage),
         mergeMap((action) =>
@@ -93,13 +93,13 @@ export class UserEffects {
         )
       )
   );
-  loadMessages$ = createEffect(() =>
+  loadMessage$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(loadMessages),
+    ofType(loadMessage),
     mergeMap(() =>
       this.userService.getMessages().pipe(
-        map((data) => loadMessagesSuccess({ data })),
-        catchError((error) => of(loadMessagesFailure({ error })))
+        map((data) => loadMessageSuccess({ data })),
+        catchError((error) => of(loadMessageFailure({ error })))
       )
     )
   )

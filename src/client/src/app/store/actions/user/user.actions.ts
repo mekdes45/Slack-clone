@@ -19,17 +19,17 @@ export const loadUsersFailure = createAction(
 );
 
 
-export const loadMessages = createAction(
-  '[Message] Load Message',
+export const loadMessage = createAction(
+  '[Message] Load Messages',
 );
 
-export const loadMessagesSuccess = createAction(
-  '[Message] Load Message Success',
+export const loadMessageSuccess = createAction(
+  '[Message] Load Messages Success',
   props<{ data: Message[] }>()
 );
 
-export const loadMessagesFailure = createAction(
-  '[Message] Load Message Failure',
+export const loadMessageFailure = createAction(
+  '[Message] Load Messages Failure',
   props<{ error: Error }>()
 );
 
