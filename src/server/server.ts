@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors'
 const app = express();
 import mongoose from 'mongoose';
-import path from 'path';
 import { PostModel } from './schemas/post.schema.js';
 import { UserModel } from './schemas/user.schema.js'
 import { MessageModel } from './schemas/message.schemas.js';
@@ -18,15 +17,13 @@ const access_secret = process.env.ACCESS_TOKEN_SECRET as string;
 console.log(access_secret);
 
 
-
 import { createServer } from "http";
 import { Server } from "socket.io";
-const PORT = '3503'
+const PORT = '3503';
 
-const saltRounds = 10;
 
 mongoose
-  .connect("mongodb://localhost:27017/slack")
+  .connect("mongodb://localhost:27017/slack-app")
   .then(() => {
     console.log("Connected to DB Successfully");
   })
@@ -38,7 +35,7 @@ mongoose
 app.use(cookieParser())
 const server = createServer(app);
 let io = new Server(server, {
-    cors: {origin: ['http://localhost:4200']}
+    cors: {origin: ['http://localhost:4200','http://localhost:3501','http://localhost:8080']}
     
 })
 
@@ -69,7 +66,8 @@ io.on('connection', (socket) => {
 
 app.get('/messages', function(req,res){
     MessageModel.find()
-    .then(data => res.json({data}))
+      .then(data => res.json({
+        data}))
     .catch(err => {
         res.status(501)
         res.json({errors: err});
@@ -83,7 +81,8 @@ app.post('/create-message', function(req,res){
         text,
     });
     message.save()
-    .then((data:any) => {
+      .then((data: any) => {
+        console.log(data)
         res.json({data});
     })
     .catch((err: any) => {
@@ -93,7 +92,7 @@ app.post('/create-message', function(req,res){
 });
 
 
-app.get("/posts", function (req, res) {
+app.get("/Posts", function (req, res) {
     PostModel.find()
       .then((data) => res.json({ data }))
       .catch((err) => {
@@ -108,7 +107,7 @@ app.get("/posts", function (req, res) {
 
 app.get('/users', function(req,res){
     UserModel.find()
-    .then(data => res.json({data}))
+      .then(data => res.json({ data }))
     .catch(err => {
         res.status(501)
         res.json({errors: err});
@@ -122,7 +121,8 @@ app.post('/create-user', function(req,res){
         username,
     });
     user.save()
-    .then((data) => {
+      .then((data) => {
+        console.log(data)
         res.json({data});
     })
     .catch(err => {
@@ -138,7 +138,9 @@ app.post('/create-post', function(req,res){
         body,
     });
     post.save()
-    .then((data) => {
+      .then((data) =>
+      {
+        console.log(data);
         res.json({data});
     })
     .catch(err => {
@@ -147,13 +149,22 @@ app.post('/create-post', function(req,res){
     })
 });
 
-app.delete('/delete-user/:id', function(req, res) {
+app.delete('/delete-user/:id', function (req, res) {
   const _id = req.params.id;
   UserModel.findByIdAndDelete(_id).then((data) => {
-      console.log(data);
-      res.json({data});
+    console.log(data);
+    res.json({ data });
   });
-})
+});
+app.delete('/delete-message/:id', function (req, res) {
+  const _id = req.params.id;
+  MessageModel.findByIdAndDelete(_id).then((data) => {
+    console.log(data);
+    res.json({ data });
+  });
+});
+
+
 
 app.put('/update-user/:id', function(req, res) {
   console.log("Update user");
