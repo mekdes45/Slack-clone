@@ -19,29 +19,49 @@ console.log(access_secret);
 
 import { createServer } from "http";
 import { Server } from "socket.io";
-const PORT = '3503';
+
+dotenv.config();
+console.log(process.env.MONGO_URI);
+
+const __dirname=path.resolve()
+const PORT = '3000';
+import path from 'path';
 
 
 mongoose
-  .connect("mongodb://localhost:27017/slack-app")
+  .connect(`${process.env.MONGO_URI}`)
   .then(() => {
     console.log("Connected to DB Successfully");
   })
   .catch((err) => console.log("Failed to Connect to DB", err));
 
-  app.use(express.json());
-  app.use(cors())
-  
-app.use(cookieParser())
+
+ 
+
+  app.use(cookieParser())
 const server = createServer(app);
 let io = new Server(server, {
-    cors: {origin: ['http://localhost:4200','http://localhost:3501','http://localhost:8080']}
+    cors: {origin: ['http://localhost:3000','http://localhost:4200','http://localhost:3501','http://localhost:8080']}
     
 })
 
-app.get('/', function(req, res) {
-     res.json({message:'test'});
+app.use(express.json());
+app.all("/api/*", function (req, res) {
+  res.sendStatus(404);
+});
+
+
+const clientPath = path.join(__dirname, '/dist/client');
+app.use(express.static(clientPath));
+
+app.get("*", function (req, res) {
+	const filePath = path.join(__dirname, '/dist/client/index.html');
+	console.log(filePath);
+	res.sendFile(filePath);
   });
+
+
+
 
 
 //one client connect to the server
@@ -64,7 +84,7 @@ io.on('connection', (socket) => {
 });
 
 
-app.get('/messages', function(req,res){
+app.get('/api/messages', function(req,res){
     MessageModel.find()
       .then(data => res.json({
         data}))
@@ -74,7 +94,7 @@ app.get('/messages', function(req,res){
     })
 });
 
-app.post('/create-message', function(req,res){
+app.post('/api/create-message', function(req,res){
     const {sender,text} = req.body;
     const message = new MessageModel({
         sender,
@@ -92,7 +112,7 @@ app.post('/create-message', function(req,res){
 });
 
 
-app.get("/Posts", function (req, res) {
+app.get("/api/Posts", function (req, res) {
     PostModel.find()
       .then((data) => res.json({ data }))
       .catch((err) => {
@@ -105,7 +125,7 @@ app.get("/Posts", function (req, res) {
 
 
 
-app.get('/users', function(req,res){
+app.get('/api/users', function(req,res){
     UserModel.find()
       .then(data => res.json({ data }))
     .catch(err => {
@@ -131,7 +151,7 @@ app.post('/create-user', function(req,res){
     })
 });
 
-app.post('/create-post', function(req,res){
+app.post('/api/create-post', function(req,res){
     const {title, body} = req.body;
     const post = new PostModel({
         title,
@@ -149,14 +169,14 @@ app.post('/create-post', function(req,res){
     })
 });
 
-app.delete('/delete-user/:id', function (req, res) {
+app.delete('/api/delete-user/:id', function (req, res) {
   const _id = req.params.id;
   UserModel.findByIdAndDelete(_id).then((data) => {
     console.log(data);
     res.json({ data });
   });
 });
-app.delete('/delete-message/:id', function (req, res) {
+app.delete('/api/delete-message/:id', function (req, res) {
   const _id = req.params.id;
   MessageModel.findByIdAndDelete(_id).then((data) => {
     console.log(data);
@@ -166,7 +186,7 @@ app.delete('/delete-message/:id', function (req, res) {
 
 
 
-app.put('/update-user/:id', function(req, res) {
+app.put('/api/update-user/:id', function(req, res) {
   console.log("Update user");
   UserModel.findByIdAndUpdate(
       req.params.id,
@@ -188,7 +208,7 @@ app.put('/update-user/:id', function(req, res) {
 })
 
   
-  app.post("/login", function (req, res) {
+  app.post("/api/login", function (req, res) {
     const { email, password } = req.body;
   
     UserModel.findOne({ email })
