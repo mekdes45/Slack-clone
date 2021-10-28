@@ -134,7 +134,7 @@ app.get('/api/users', function(req,res){
         res.json({errors: err});
     })
 });
-app.post('/create-user', function(req,res){
+app.post('api//create-user', function(req,res){
     const {name, email, username} = req.body;
     const user = new UserModel({
         name,
