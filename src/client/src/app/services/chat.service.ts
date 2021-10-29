@@ -12,8 +12,7 @@ export class ChatService {
 
   constructor(private api:ApiService) { }
 
- socket = io(!environment.production ? 'http://localhost:3000/':""
- );
+ socket = io();
 
   joinRoom(data:any)
   {
