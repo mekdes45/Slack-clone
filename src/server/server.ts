@@ -42,7 +42,7 @@ mongoose
   app.use(cookieParser())
 const server = createServer(app);
 let io = new Server(server, {
-    cors: {origin: ['http://localhost:3000','http://localhost:4200','http://localhost:3501','http://localhost:8080']}
+    cors: {origin: ['http://localhost:3000','http://localhost:4200','http://localhost:3501']}
     
 })
 
