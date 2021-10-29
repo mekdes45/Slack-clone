@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import  io from 'socket.io-client';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,8 @@ export class ChatService {
 
   constructor(private api:ApiService) { }
 
- socket = io('http://localhost:3000/');
+ socket = io(!environment.production ? 'http://localhost:3000/':""
+ );
 
   joinRoom(data:any)
   {
