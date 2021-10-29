@@ -10,7 +10,11 @@ import { environment } from 'src/environments/environment';
 export class ChatService {
 
 
-  constructor(private api:ApiService) { }
+  constructor(private api: ApiService) {
+    console.log('chatService');
+    
+    this.socket.on('user connected',(data)=>console.log(data))
+   }
 
  socket = io(!environment.production ? 'http://localhost:5000': '');
 

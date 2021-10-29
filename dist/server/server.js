@@ -19,6 +19,7 @@ console.log(process.env.MONGO_URI);
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
 import path from 'path';
+import 'process';
 mongoose
     .connect(`${process.env.MONGO_URI}`)
     .then(() => {
@@ -40,6 +41,7 @@ app.use(express.static(clientPath));
 //one client connect to the server
 io.on('connection', (socket) => {
     console.log('user connected');
+    io.emit('user connected', 'userConnected');
     socket.on('join', function (data) {
         socket.join(data.room);
         io.emit('new user joined', { user: data.user, message: 'joined.' });
