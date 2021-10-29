@@ -18,7 +18,8 @@ console.log(access_secret);
 
 
 import { createServer } from "http";
-import { Server } from "socket.io";
+import * as socketIO from "socket.io";
+
 
 dotenv.config();
 console.log(process.env.MONGO_URI);
@@ -37,29 +38,30 @@ mongoose
   .catch((err) => console.log("Failed to Connect to DB", err));
 
 
- 
+  
+  
 
   app.use(cookieParser())
 const server = createServer(app);
-let io = new Server(server, {
-    cors: {origin: ['http://localhost:3000','http://localhost:4200','http://localhost:3501']}
-    
-})
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:5000', 'http://localhost:4200', 'http://localhost:3501', 'http://localhost:8080']
+}));
+
+
+
+const io = new socketIO.Server(server,  { cors: {
+  origin: '*'
+}});
+
 
 app.use(express.json());
-app.all("/api/*", function (req, res) {
-  res.sendStatus(404);
-});
+
 
 
 const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
 
-app.get("*", function (req, res) {
-	const filePath = path.join(__dirname, '/dist/client/index.html');
-	console.log(filePath);
-	res.sendFile(filePath);
-  });
 
 
 
@@ -134,7 +136,7 @@ app.get('/api/users', function(req,res){
         res.json({errors: err});
     })
 });
-app.post('api//create-user', function(req,res){
+app.post('/api/create-user', function(req,res){
     const {name, email, username} = req.body;
     const user = new UserModel({
         name,
@@ -243,9 +245,16 @@ app.put('/api/update-user/:id', function(req, res) {
   });
 
 
+  app.all("/api/*", function (req, res) {
+    res.sendStatus(404);
+  });
 
-
-
+  app.get("*", function (req, res) {
+    const filePath = path.join(__dirname, '/dist/client/index.html');
+    console.log(filePath);
+    res.sendFile(filePath);
+    });
+  
 
 
 

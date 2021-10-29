@@ -25,10 +25,10 @@ export class RegisterComponent implements OnInit, OnChanges {
         '',
         Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      // password: [
-      //   '',
-      //   Validators.compose([Validators.required, Validators.minLength(5)]),
-      // ],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(5)]),
+      ],
     });
   }
 
